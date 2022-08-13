@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +21,9 @@ class DataUploder extends GetxController {
         .where((element) =>
             element.startsWith("assets/DB/papers") && element.contains(".json"))
         .toList();
-
-    print(paperinAssets);
+    for (var paper in paperinAssets) {
+      String stringPaperContent = await rootBundle.loadString(paper);
+      print(stringPaperContent);
+    }
   }
 }
