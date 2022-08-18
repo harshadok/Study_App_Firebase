@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_studyapp/firebase_ref/refrences.dart';
 import 'package:firebase_studyapp/models/qustion_paper_model.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -13,6 +15,7 @@ class DataUploder extends GetxController {
   }
 
   Future uploadData() async {
+    final fireStore = FirebaseFirestore.instance;
     final mainfsetContent = await DefaultAssetBundle.of(Get.context!)
         .loadString("AssetManifest.json");
 
@@ -27,9 +30,23 @@ class DataUploder extends GetxController {
     for (var paper in paperinAssets) {
       String stringPaperContent = await rootBundle.loadString(paper);
       // print(stringPaperContent);
-
+      //added datas in to model qustion paper
       qustionPapers
           .add(QustionPaperModel.fromJson(jsonDecode(stringPaperContent)));
     }
+
+    var batch = fireStore.batch();
+
+    for (var paper in qustionPapers) {
+      batch.set(qustionPeoperRF.doc(paper.id), {
+        'title': paper.title,
+        'image_url': paper.imageUrl,
+        'discription': paper.description,
+        'time_second0': paper.timeSeconds,
+        'questions_count': paper.questions == null ? 0 : paper.questions!.length
+      });
+    }
+
+    await batch.commit();
   }
 }
