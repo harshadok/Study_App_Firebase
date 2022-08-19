@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_studyapp/firebase_ref/loadind_status.dart';
 import 'package:firebase_studyapp/firebase_ref/refrences.dart';
 import 'package:firebase_studyapp/models/qustion_paper_model.dart';
 import 'package:flutter/services.dart';
@@ -14,7 +15,10 @@ class DataUploder extends GetxController {
     super.onReady();
   }
 
+  final loadingstatus = LoadingStatus.loading.obs;
+
   Future uploadData() async {
+    loadingstatus.value = LoadingStatus.loading;
     final fireStore = FirebaseFirestore.instance;
     final mainfsetContent = await DefaultAssetBundle.of(Get.context!)
         .loadString("AssetManifest.json");
@@ -62,5 +66,7 @@ class DataUploder extends GetxController {
     }
 
     await batch.commit();
+
+    loadingstatus.value = LoadingStatus.completed;
   }
 }
