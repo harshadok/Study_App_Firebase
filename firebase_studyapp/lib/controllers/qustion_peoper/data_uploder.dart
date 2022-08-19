@@ -45,6 +45,20 @@ class DataUploder extends GetxController {
         'time_second0': paper.timeSeconds,
         'questions_count': paper.questions == null ? 0 : paper.questions!.length
       });
+
+      for (var qustions in paper.questions!) {
+        final qustionPath =
+            qustionRF(paperId: paper.id, qustionId: qustions.id);
+        batch.set(qustionPath, {
+          'question': qustions.question,
+          'correct_answer': qustions.correctAnswer
+        });
+
+        for (var answers in qustions.answers) {
+          batch.set(qustionPath.collection('answers').doc(answers.identifier),
+              {'identifire': answers.identifier, 'answer': answers.answer});
+        }
+      }
     }
 
     await batch.commit();
