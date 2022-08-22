@@ -18,9 +18,9 @@ class IntroductionScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Text(
-              "This is a study app.scale it",
-              style: TextStyle(
-                  fontSize: 20, color: Color.fromARGB(255, 29, 28, 25)),
+              "This is a study app.you can use it as you want.if you understand how it workes you would be able to scale it",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20, color: onSurfaceColure),
             ),
             SizedBox(
               height: 40,
