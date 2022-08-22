@@ -1,6 +1,5 @@
+import 'package:firebase_studyapp/config/theme/app_colure.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -9,6 +8,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        decoration: BoxDecoration(gradient: mainGradient(context)),
         child: Center(
           child: Image.asset(
             "assets/images/app_splash_logo.png",

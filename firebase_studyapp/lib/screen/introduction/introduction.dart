@@ -1,3 +1,4 @@
+import 'package:firebase_studyapp/config/theme/app_colure.dart';
 import 'package:firebase_studyapp/widgets/appsircle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ class IntroductionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
+      decoration: BoxDecoration(gradient: mainGradient(context)),
       alignment: Alignment.center,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
