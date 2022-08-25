@@ -39,6 +39,8 @@ dependencies:
   get: ^4.6.5
   google_fonts: ^3.0.1
   firebase_storage: ^10.3.6
+  cached_network_image_builder: ^0.2.0
+  cached_network_image: ^3.2.1
 
 dev_dependencies:
   flutter_test:

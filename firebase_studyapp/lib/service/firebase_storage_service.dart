@@ -1,7 +1,5 @@
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_studyapp/firebase_ref/refrences.dart';
 import 'package:get/get.dart';
-
-Reference get firebaseStoreage => FirebaseStorage.instance.ref();
 
 class FirebaseStorageService extends GetxService {
   Future<String?> getImage(String? imageName) async {

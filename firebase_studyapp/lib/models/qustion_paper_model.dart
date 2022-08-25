@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class QustionPaperModel {
   String id;
   String title;
@@ -7,13 +9,14 @@ class QustionPaperModel {
   String description;
   int timeSeconds;
   List<Questions>? questions;
-
+  int qustionCount;
   QustionPaperModel(
       {required this.id,
       required this.title,
       this.imageUrl,
       required this.description,
       required this.timeSeconds,
+      required this.qustionCount,
       this.questions});
 
   QustionPaperModel.fromJson(Map<String, dynamic> json)
@@ -22,11 +25,20 @@ class QustionPaperModel {
         imageUrl = json['image_url'] as String,
         description = json['Description'] as String,
         timeSeconds = json['time_seconds'],
+        qustionCount = 0,
         questions = (json['questions'] as List)
             .map(
               (dynamic e) => Questions.fromJson(e as Map<String, dynamic>),
             )
             .toList();
+  QustionPaperModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> json)
+      : id = json.id,
+        title = json['t.id'],
+        imageUrl = json['image.id'],
+        description = json['Descrip.id'],
+        timeSeconds = json['time_seconds'],
+        qustionCount = json['question_count' as int],
+        questions = [];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
