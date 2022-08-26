@@ -9,10 +9,8 @@ import 'package:get/get_core/src/get_main.dart';
 import '../controllers/qustion_peoper/qustion_paper_controller.dart';
 
 class QustionCard extends StatelessWidget {
-  const QustionCard({Key? key, required this.model, required this.index})
-      : super(key: key);
+  const QustionCard({Key? key, required this.model}) : super(key: key);
   final QustionPaperModel model;
-  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +19,19 @@ class QustionCard extends StatelessWidget {
       children: [
         Row(
           children: [
-            ClipRRect(
-                child: Container(
-              color: Colors.red,
-              height: 200,
-              width: 200,
-              // he chnages some more things here that are added new dependecie CHACHEDNETWORK IMAGE TO SAVE IMAGE AND SHOW CIRCLEARPROGRESS BAR VEDIO LOCATION :4:23
-              child: FadeInImage(
-                image:
-                    NetworkImage(qustionpapercontroller.allPaperImages[index]),
-                placeholder:
-                    const AssetImage("assets/images/app_splash_logo.png"),
-              ),
-            )),
+            // ClipRRect(
+            //     child: Container(
+            //   color: Colors.red,
+            //   height: 200,
+            //   width: 200,
+            //   // he chnages some more things here that are added new dependecie CHACHEDNETWORK IMAGE TO SAVE IMAGE AND SHOW CIRCLEARPROGRESS BAR VEDIO LOCATION :4:23
+            //   child: FadeInImage(
+            //     image:
+            //       //  NetworkImage(qustionpapercontroller.allPapers),
+            //     placeholder:
+            //         const AssetImage("assets/images/app_splash_logo.png"),
+            //   ),
+            // )),
           ],
         )
       ],
